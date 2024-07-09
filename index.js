@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
- import "dotenv/config";
+import "dotenv/config";
+import eventRouter from "./routes/eventRouter.js";
 
 
 await mongoose.connect(process.env.Mongo_Url);
@@ -8,16 +9,22 @@ await mongoose.connect(process.env.Mongo_Url);
 
 
 //create app
-
 const app = express();
 
-//
-app.use(express.json())
+// use middleware
+app.use(express.json());
+app.use(express.static("eventBanners"));
+
+
+
+
+// use routes
+app.use(eventRouter);
 
 
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {
-    console.log(`App is done ${port} channel`)
+    console.log(`server is listening on port ${port}`);
 
 })
