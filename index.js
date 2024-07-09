@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
  import "dotenv/config";
+import { collegeRouter } from "./routes/college-route.js ";
 
 
 await mongoose.connect(process.env.Mongo_Url);
@@ -10,9 +11,12 @@ await mongoose.connect(process.env.Mongo_Url);
 //create app
 
 const app = express();
-
 //
 app.use(express.json())
+
+app.use(collegeRouter);
+
+
 
 
 
