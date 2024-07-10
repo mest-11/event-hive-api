@@ -7,30 +7,28 @@ export const getCollege = async (req, res, next) => {
         res.json(findCollege)
     } catch (error) {
         next(error)
-        
+
     }
 }
 
 
 export const postCollege = async (req, res, next) => {
     try {
-        const addCollege = await collegeModel.create(
-            req.body
-        )
-res.json(addCollege)
+        const addCollege = await collegeModel.create(req.body)
+        res.json(addCollege)
 
     } catch (error) {
         next(error)
-        
+
     }
 }
 
-export const patchCollege = async(req, res, next) => {
+export const patchCollege = async (req, res, next) => {
     try {
-        const updatedCollege = await collegeModel.findByIdUpdate(req.params.id, re.body, {new: true})
+        const updatedCollege = await collegeModel.findByIdUpdate(req.params.id, req.body, { new: true })
         res.status(200).json(updatedCollege)
     } catch (error) {
         next(error)
-        
+
     }
 }
